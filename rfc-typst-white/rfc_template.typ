@@ -30,7 +30,7 @@
   heading([#project-name: RFC #rfc-number --- #rfc-name], outlined: false)
 
   text(
-    fill: rgb(255, 255, 255, 120),
+    fill: rgb(0, 0, 0, 180),
     [#date.display("[year].[month].[day]")
     #pad(
       y: -3pt,
