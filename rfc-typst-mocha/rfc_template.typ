@@ -2,11 +2,12 @@
 #import "@preview/codly:0.2.0": *
 
 #let rfc(
-  project-name: none,
+  project-name: str,
   rfc-number: none,
-  rfc-name: none,
+  rfc-name: str,
   date: datetime,
   authors: (content),
+  draft: bool,
   doc,
 
 ) = {
@@ -27,6 +28,10 @@
     languages: (
       rust: (name: "Rust", color: rgb("#CE412B")),
   ))
+
+  if draft {
+    [\ #text([⚠ *This RFC is a draft!* Do not use this as an implementation guide ⚠], fill: mocha.red) #linebreak()]
+  }
 
   heading([#project-name: RFC #rfc-number --- #rfc-name], outlined: false)
 
@@ -50,4 +55,4 @@
   [#doc]
 }
 
-#let wip = text([*This section is TBA!* Continue at your own risk], fill: mocha.red);
+#let wip = text([⚠ *This section is TBA!* Continue at your own risk ⚠], fill: mocha.red);
