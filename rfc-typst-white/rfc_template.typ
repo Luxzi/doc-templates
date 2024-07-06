@@ -1,11 +1,12 @@
 #import "@preview/codly:0.2.0": *
 
 #let rfc(
-  project-name: none,
+  project-name: str,
   rfc-number: none,
-  rfc-name: none,
+  rfc-name: str,
   date: datetime,
   authors: (content),
+  draft: bool,
   doc,
 
 ) = {
@@ -27,6 +28,10 @@
       rust: (name: "Rust", color: rgb("#CE412B")),
   ))
 
+  if draft {
+    [\ #text([⚠ *This RFC is a draft!* Do not use this as an implementation guide ⚠], fill: rgb(200, 50, 10)) #linebreak()]
+  }
+
   heading([#project-name: RFC #rfc-number --- #rfc-name], outlined: false)
 
   text(
@@ -45,8 +50,8 @@
 
   outline(title: [RFC Outline])
   show heading: set heading(numbering: "1.1")
-
+  show link: underline
   [#doc]
 }
 
-#let wip = text([*This section is TBA!* Continue at your own risk], fill: rgb(200, 50, 10));
+#let wip = text([⚠ *This section is TBA!* Continue at your own risk ⚠], fill: rgb(200, 50, 10));
